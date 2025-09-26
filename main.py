@@ -420,6 +420,33 @@ class RestaurantManagementSystem:
                         bd=1, relief=SOLID)
             entry.grid(row=row, column=col+1, sticky=EW, padx=5, pady=2)
     
+    def setup_receipt_frame(self, parent):
+        """Setup the receipt display area"""
+        receipt_frame = LabelFrame(parent, text="📄 Receipt", 
+                                 font=('Segoe UI', 12, 'bold'),
+                                 bg='#f8f9fa', fg='#2c3e50',
+                                 relief=RIDGE, bd=2)
+        receipt_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 10))
+        receipt_frame.grid_rowconfigure(0, weight=1)
+        receipt_frame.grid_columnconfigure(0, weight=1)
+        
+        # Receipt text widget with scrollbar
+        text_frame = Frame(receipt_frame)
+        text_frame.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
+        text_frame.grid_rowconfigure(0, weight=1)
+        text_frame.grid_columnconfigure(0, weight=1)
+        
+        self.txtReceipt = Text(text_frame, 
+                              font=('Courier New', 10),
+                              bg='#ffffff', fg='#2c3e50',
+                              bd=1, relief=SOLID,
+                              wrap=WORD)
+        self.txtReceipt.grid(row=0, column=0, sticky="nsew")
+        
+        # Scrollbar
+        scrollbar = Scrollbar(text_frame, orient=VERTICAL, command=self.txtReceipt.yview)
+        scrollbar.grid(row=0, column=1, sticky="ns")
+        self.txtReceipt.config(yscrollcommand=scrollbar.set)
     
     # Calculator methods
     def btnClick(self, numbers):
