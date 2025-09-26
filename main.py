@@ -210,6 +210,24 @@ class RestaurantManagementSystem:
         self.setup_menu_frame()
         self.setup_receipt_calc_frame()
     
+    # Calculator methods
+    def btnClick(self, numbers):
+        self.operator = self.operator + str(numbers)
+        self.text_Input.set(self.operator)
+
+    def btnClear(self):
+        self.operator = ""
+        self.text_Input.set("")
+
+    def btnEquals(self):
+        try:
+            sumup = str(eval(self.operator))
+            self.text_Input.set(sumup)
+            self.operator = ""
+        except:
+            self.text_Input.set("Error")
+            self.operator = ""
+    
     
     
     
