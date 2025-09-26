@@ -326,6 +326,23 @@ class RestaurantManagementSystem:
             
             self.cake_entries[name] = entry
     
+    def setup_receipt_calc_frame(self):
+        """Setup the receipt and calculator frame"""
+        right_frame = Frame(self.main_frame, bg='#ecf0f1')
+        right_frame.grid(row=0, column=1, sticky="nsew", padx=(5, 0))
+        right_frame.grid_rowconfigure(1, weight=1)
+        right_frame.grid_columnconfigure(0, weight=1)
+        
+        # Buttons frame
+        self.setup_buttons_frame(right_frame)
+        
+        # Receipt frame
+        self.setup_receipt_frame(right_frame)
+        
+        # Calculator frame
+        self.setup_calculator_frame(right_frame)
+    
+    
     def setup_cost_frame(self, parent):
         """Setup the cost display frame"""
         cost_frame = LabelFrame(parent, text="💰 Order Summary", 
