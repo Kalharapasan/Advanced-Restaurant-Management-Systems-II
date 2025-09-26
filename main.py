@@ -141,7 +141,30 @@ class RestaurantManagementSystem:
 
         self.DateofOrder.set(time.strftime("%d/%m/%Y"))
     
-    
+    def setup_ui(self):
+        """Setup the user interface with responsive design"""
+        # Configure root window
+        self.root.title("Restaurant Management System - Enhanced Edition")
+        self.root.configure(background='#f0f0f0')
+        
+        # Make window responsive
+        self.root.grid_rowconfigure(1, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
+        
+        # Get screen dimensions for responsive sizing
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        
+        # Set window size based on screen size
+        window_width = min(1400, int(screen_width * 0.9))
+        window_height = min(800, int(screen_height * 0.9))
+        
+        # Center the window
+        x = (screen_width - window_width) // 2
+        y = (screen_height - window_height) // 2
+        
+        self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
+        self.root.minsize(1000, 600)
     
     
     
