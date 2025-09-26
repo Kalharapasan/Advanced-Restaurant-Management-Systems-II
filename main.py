@@ -292,6 +292,40 @@ class RestaurantManagementSystem:
             
             self.drink_entries[name] = entry
     
+    def setup_cakes_items(self, parent):
+        """Setup cakes items with checkboxes and entry fields"""
+        cakes_data = [
+            ("School Cake", self.var9, self.E_School_Cake, self.chkSchool_Cake),
+            ("Sunday O Cake", self.var10, self.E_Sunny_AO_Cake, self.chkSunny_AO_Cake),
+            ("Jonathan O Cake", self.var11, self.E_Jonathan_YO_Cake, self.chkJonathan_YO_Cake),
+            ("West African Cake", self.var12, self.E_West_African_Cake, self.chkWest_African_Cake),
+            ("Lagos Chocolate Cake", self.var13, self.E_Lagos_Chocolate_Cake, self.chkLagos_Chocolate_Cake),
+            ("Kilburn Chocolate Cake", self.var14, self.E_Kilburn_Chocolate_Cake, self.chkKilburn_Chocolate_Cake),
+            ("Carlton Hill Cake", self.var15, self.E_Carlton_Hill_Chocolate_Cake, self.chkCarlton_Hill_Cake),
+            ("Queen's Park Cake", self.var16, self.E_Queen_Park_Chocolate_Cake, self.chkQueen_Park_Cake)
+        ]
+        
+        self.cake_entries = {}
+        
+        for i, (name, var, text_var, command) in enumerate(cakes_data):
+            # Checkbox
+            chk = Checkbutton(parent, text=name, variable=var,
+                            font=('Segoe UI', 11, 'bold'),
+                            bg='#fef9e7', fg='#2c3e50',
+                            activebackground='#fcf4dd',
+                            command=command)
+            chk.grid(row=i, column=0, sticky=W, padx=10, pady=2)
+            
+            # Entry field
+            entry = Entry(parent, textvariable=text_var,
+                        font=('Segoe UI', 10),
+                        width=8, state=DISABLED,
+                        bg='#ffffff', fg='#2c3e50',
+                        bd=1, relief=SOLID)
+            entry.grid(row=i, column=1, sticky=E, padx=10, pady=2)
+            
+            self.cake_entries[name] = entry
+    
     
     # Calculator methods
     def btnClick(self, numbers):
