@@ -651,6 +651,60 @@ class RestaurantManagementSystem:
             self.cake_entries["Queen's Park Cake"].configure(state=DISABLED)
             self.E_Queen_Park_Chocolate_Cake.set("0")
     
+    def CostofItem(self):
+        """Calculate the cost of all items"""
+        try:
+            
+            items = {
+                'Latta': float(self.E_Latta.get() or 0),
+                'Espresso': float(self.E_Espresso.get() or 0),
+                'Iced_Latta': float(self.E_Iced_Latta.get() or 0),
+                'Vale_Coffe': float(self.E_Vale_Coffe.get() or 0),
+                'Cappuccino': float(self.E_Cappuccino.get() or 0),
+                'African_Coffee': float(self.E_African_Coffee.get() or 0),
+                'American_Coffee': float(self.E_American_Coffee.get() or 0),
+                'Iced_Cappuccino': float(self.E_Iced_Cappuccino.get() or 0),
+                'School_Cake': float(self.E_School_Cake.get() or 0),
+                'Sunny_AO_Cake': float(self.E_Sunny_AO_Cake.get() or 0),
+                'Jonathan_YO_Cake': float(self.E_Jonathan_YO_Cake.get() or 0),
+                'West_African_Cake': float(self.E_West_African_Cake.get() or 0),
+                'Lagos_Chocolate_Cake': float(self.E_Lagos_Chocolate_Cake.get() or 0),
+                'Kilburn_Chocolate_Cake': float(self.E_Kilburn_Chocolate_Cake.get() or 0),
+                'Carlton_Hill_Chocolate_Cake': float(self.E_Carlton_Hill_Chocolate_Cake.get() or 0),
+                'Queen_Park_Chocolate_Cake': float(self.E_Queen_Park_Chocolate_Cake.get() or 0)
+            }
+
+          
+            drink_prices = {
+                'Latta': 1.20, 'Espresso': 1.99, 'Iced_Latta': 2.05, 'Vale_Coffe': 1.89,
+                'Cappuccino': 1.99, 'African_Coffee': 2.99, 'American_Coffee': 2.39, 'Iced_Cappuccino': 1.29
+            }
+            
+            cake_prices = {
+                'School_Cake': 1.35, 'Sunny_AO_Cake': 2.20, 'Jonathan_YO_Cake': 1.99, 'West_African_Cake': 1.49,
+                'Lagos_Chocolate_Cake': 1.80, 'Kilburn_Chocolate_Cake': 1.67, 
+                'Carlton_Hill_Chocolate_Cake': 1.60, 'Queen_Park_Chocolate_Cake': 1.99
+            }
+
+           
+            drinks_cost = sum(items[item] * price for item, price in drink_prices.items())
+            cakes_cost = sum(items[item] * price for item, price in cake_prices.items())
+            
+            service_charge = 1.59
+            subtotal = drinks_cost + cakes_cost + service_charge
+            tax = subtotal * 0.15
+            total = subtotal + tax
+
+            
+            self.CostofDrinks.set(f"£{drinks_cost:.2f}")
+            self.CostofCakes.set(f"£{cakes_cost:.2f}")
+            self.ServiceCharge.set(f"£{service_charge:.2f}")
+            self.SubTotal.set(f"£{subtotal:.2f}")
+            self.PaidTax.set(f"£{tax:.2f}")
+            self.TotalCost.set(f"£{total:.2f}")
+            
+        except ValueError:
+            tkinter.messagebox.showerror("Error", "Please enter valid numbers for quantities.")
     
    
     def btnClick(self, numbers):
