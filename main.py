@@ -16,6 +16,7 @@ DB_CONFIG = {
     'password': 'kalharamax' 
 }
 
+class RestaurantManagementSystem:
 
 def main():
     """Main function to run the application"""
