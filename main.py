@@ -141,6 +141,36 @@ class RestaurantManagementSystem:
 
         self.DateofOrder.set(time.strftime("%d/%m/%Y"))
     
+    def insert_default_menu_items(self):
+        """Insert default menu items"""
+        cursor = self.connection.cursor()
+        
+        menu_items = [
+            # Drinks
+            ('Latta', 'drinks', 1.20),
+            ('Espresso', 'drinks', 1.99),
+            ('Iced Latte', 'drinks', 2.05),
+            ('Vale Coffee', 'drinks', 1.89),
+            ('Cappuccino', 'drinks', 1.99),
+            ('African Coffee', 'drinks', 2.99),
+            ('American Coffee', 'drinks', 2.39),
+            ('Iced Cappuccino', 'drinks', 1.29),
+            
+            # Cakes
+            ('School Cake', 'cakes', 1.35),
+            ('Sunny AO Cake', 'cakes', 2.20),
+            ('Jonathan YO Cake', 'cakes', 1.99),
+            ('West African Cake', 'cakes', 1.49),
+            ('Lagos Chocolate Cake', 'cakes', 1.80),
+            ('Kilburn Chocolate Cake', 'cakes', 1.67),
+            ('Carlton Hill Chocolate Cake', 'cakes', 1.60),
+            ('Queen Park Chocolate Cake', 'cakes', 1.99)
+        ]
+        
+        insert_query = "INSERT INTO menu_items (name, category, price) VALUES (%s, %s, %s)"
+        cursor.executemany(insert_query, menu_items)
+        self.connection.commit()
+    
     def setup_ui(self):
         """Setup the user interface with responsive design"""
         # Configure root window
@@ -179,6 +209,7 @@ class RestaurantManagementSystem:
         # Setup frames
         self.setup_menu_frame()
         self.setup_receipt_calc_frame()
+    
     
     
     
