@@ -111,8 +111,7 @@ net start mysql            # Windows
 ---
 
 ## 📜 License
-This project is open source under the **MIT License**.  
-You are free to use, modify, and distribute it.  
+📄 [License](./LICENSE.md): Proprietary – Permission Required 
 
 ---
 
