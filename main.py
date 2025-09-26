@@ -712,12 +712,12 @@ class RestaurantManagementSystem:
             total = subtotal + tax
 
             
-            self.CostofDrinks.set(f"£{drinks_cost:.2f}")
-            self.CostofCakes.set(f"£{cakes_cost:.2f}")
-            self.ServiceCharge.set(f"£{service_charge:.2f}")
-            self.SubTotal.set(f"£{subtotal:.2f}")
-            self.PaidTax.set(f"£{tax:.2f}")
-            self.TotalCost.set(f"£{total:.2f}")
+            self.CostofDrinks.set(f"${drinks_cost:.2f}")
+            self.CostofCakes.set(f"${cakes_cost:.2f}")
+            self.ServiceCharge.set(f"${service_charge:.2f}")
+            self.SubTotal.set(f"${subtotal:.2f}")
+            self.PaidTax.set(f"${tax:.2f}")
+            self.TotalCost.set(f"${total:.2f}")
             
         except ValueError:
             tkinter.messagebox.showerror("Error", "Please enter valid numbers for quantities.")
@@ -828,12 +828,12 @@ class RestaurantManagementSystem:
             cursor = self.connection.cursor()
             
           
-            cost_drinks = float(self.CostofDrinks.get().replace('£', '')) if self.CostofDrinks.get() else 0.0
-            cost_cakes = float(self.CostofCakes.get().replace('£', '')) if self.CostofCakes.get() else 0.0
-            service_charge = float(self.ServiceCharge.get().replace('£', '')) if self.ServiceCharge.get() else 0.0
-            subtotal = float(self.SubTotal.get().replace('£', '')) if self.SubTotal.get() else 0.0
-            tax_paid = float(self.PaidTax.get().replace('£', '')) if self.PaidTax.get() else 0.0
-            total_cost = float(self.TotalCost.get().replace('£', '')) if self.TotalCost.get() else 0.0
+            cost_drinks = float(self.CostofDrinks.get().replace('$', '')) if self.CostofDrinks.get() else 0.0
+            cost_cakes = float(self.CostofCakes.get().replace('$', '')) if self.CostofCakes.get() else 0.0
+            service_charge = float(self.ServiceCharge.get().replace('$', '')) if self.ServiceCharge.get() else 0.0
+            subtotal = float(self.SubTotal.get().replace('$', '')) if self.SubTotal.get() else 0.0
+            tax_paid = float(self.PaidTax.get().replace('$', '')) if self.PaidTax.get() else 0.0
+            total_cost = float(self.TotalCost.get().replace('$', '')) if self.TotalCost.get() else 0.0
             
             
             insert_query = """
