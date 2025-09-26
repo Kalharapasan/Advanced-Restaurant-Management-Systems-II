@@ -15,3 +15,10 @@ DB_CONFIG = {
     'user': 'root',
     'password': 'kalharamax' 
 }
+
+
+def main():
+    """Main function to run the application"""
+    root = Tk()
+    app = RestaurantManagementSystem(root)
+    root.mainloop()
