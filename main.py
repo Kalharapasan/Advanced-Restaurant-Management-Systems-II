@@ -466,6 +466,47 @@ class RestaurantManagementSystem:
         # Calculator buttons
         self.setup_calculator_buttons(calc_frame)
     
+    def setup_calculator_buttons(self, parent):
+        """Setup calculator buttons"""
+        # Configure grid weights
+        for i in range(4):
+            parent.grid_columnconfigure(i, weight=1)
+        
+        button_style = {
+            'font': ('Segoe UI', 12, 'bold'),
+            'bd': 1,
+            'relief': RAISED,
+            'cursor': 'hand2'
+        }
+        
+        # Button layout
+        buttons = [
+            ['7', '8', '9', '+'],
+            ['4', '5', '6', '-'],
+            ['1', '2', '3', '*'],
+            ['0', 'C', '=', '/']
+        ]
+        
+        for row, button_row in enumerate(buttons, 1):
+            for col, button_text in enumerate(button_row):
+                if button_text.isdigit():
+                    bg_color = '#ecf0f1'
+                    command = lambda x=button_text: self.btnClick(x)
+                elif button_text in ['+', '-', '*', '/']:
+                    bg_color = '#3498db'
+                    command = lambda x=button_text: self.btnClick(x)
+                elif button_text == '=':
+                    bg_color = '#27ae60'
+                    command = self.btnEquals
+                else:  # Clear button
+                    bg_color = '#e74c3c'
+                    command = self.btnClear
+                
+                btn = Button(parent, text=button_text,
+                           bg=bg_color, fg='white' if button_text != '0' and not button_text.isdigit() else '#2c3e50',
+                           command=command, **button_style)
+                btn.grid(row=row, column=col, sticky="nsew", padx=1, pady=1)
+    
     
     # Calculator methods
     def btnClick(self, numbers):
