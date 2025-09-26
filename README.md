@@ -112,7 +112,7 @@ net start mysql            # Windows
 ---
 
 ## 📜 License
-📄 [License](./LICENSE.md): Proprietary – Permission Required 
+📄 [License](./LICENSE): Proprietary – Permission Required 
 
 ---
 
