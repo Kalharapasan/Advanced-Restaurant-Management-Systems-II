@@ -210,7 +210,20 @@ class RestaurantManagementSystem:
         self.setup_menu_frame()
         self.setup_receipt_calc_frame()
         
-    
+    def setup_title_frame(self):
+        """Setup the title frame"""
+        title_frame = Frame(self.root, bg='#2c3e50', height=80)
+        title_frame.grid(row=0, column=0, sticky="ew", padx=10, pady=10)
+        title_frame.grid_columnconfigure(0, weight=1)
+        title_frame.grid_propagate(False)
+        
+        title_label = Label(title_frame, 
+                          text="🍽️ Restaurant Management System",
+                          font=('Segoe UI', 24, 'bold'),
+                          bg='#2c3e50', 
+                          fg='white',
+                          pady=20)
+        title_label.grid(row=0, column=0)
     
     # Calculator methods
     def btnClick(self, numbers):
