@@ -209,6 +209,8 @@ class RestaurantManagementSystem:
         # Setup frames
         self.setup_menu_frame()
         self.setup_receipt_calc_frame()
+        
+    
     
     # Calculator methods
     def btnClick(self, numbers):
