@@ -534,7 +534,50 @@ class RestaurantManagementSystem:
             self.drink_entries["Iced Latte"].configure(state=DISABLED)
             self.E_Iced_Latta.set("0")
     
+    def chkVale_Coffee(self):
+        if self.var4.get() == 1:
+            self.drink_entries["Vale Coffee"].configure(state=NORMAL)
+            self.drink_entries["Vale Coffee"].focus()
+            self.E_Vale_Coffe.set("")
+        else:
+            self.drink_entries["Vale Coffee"].configure(state=DISABLED)
+            self.E_Vale_Coffe.set("0")
     
+    def chkCappuccino(self):
+        if self.var5.get() == 1:
+            self.drink_entries["Cappuccino"].configure(state=NORMAL)
+            self.drink_entries["Cappuccino"].focus()
+            self.E_Cappuccino.set("")
+        else:
+            self.drink_entries["Cappuccino"].configure(state=DISABLED)
+            self.E_Cappuccino.set("0")
+    
+    def chkAfrican_Coffee(self):
+        if self.var6.get() == 1:
+            self.drink_entries["African Coffee"].configure(state=NORMAL)
+            self.drink_entries["African Coffee"].focus()
+            self.E_African_Coffee.set("")
+        else:
+            self.drink_entries["African Coffee"].configure(state=DISABLED)
+            self.E_African_Coffee.set("0")
+    
+    def chkAmerican_Coffee(self):
+        if self.var7.get() == 1:
+            self.drink_entries["American Coffee"].configure(state=NORMAL)
+            self.drink_entries["American Coffee"].focus()
+            self.E_American_Coffee.set("")
+        else:
+            self.drink_entries["American Coffee"].configure(state=DISABLED)
+            self.E_American_Coffee.set("0")
+    
+    def chkIced_Cappuccino(self):
+        if self.var8.get() == 1:
+            self.drink_entries["Iced Cappuccino"].configure(state=NORMAL)
+            self.drink_entries["Iced Cappuccino"].focus()
+            self.E_Iced_Cappuccino.set("")
+        else:
+            self.drink_entries["Iced Cappuccino"].configure(state=DISABLED)
+            self.E_Iced_Cappuccino.set("0")
     
     
    
