@@ -1,4 +1,5 @@
 # 🍽️ Restaurant Management System
+<img width="1366" height="737" alt="image" src="https://github.com/user-attachments/assets/ee3de0aa-56b5-433a-bb5f-43a86a466271" />
 
 This is a **Python-based Restaurant Management System** built with **Tkinter** (GUI) and **MySQL** (database).  
 It allows users to:
