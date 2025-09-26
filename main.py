@@ -17,6 +17,11 @@ DB_CONFIG = {
 }
 
 class RestaurantManagementSystem:
+    def __init__(self,root):
+        self.root =root
+        self.setup_database()
+        self.setup_variables()
+        self.setup_ui()
 
 def main():
     """Main function to run the application"""
