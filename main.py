@@ -8,7 +8,7 @@ import mysql.connector
 from mysql.connector import Error
 import json
 
-# Database configuration
+
 DB_CONFIG = {
     'host': 'localhost',
     'database': 'restDB',
@@ -30,11 +30,11 @@ class RestaurantManagementSystem:
             if self.connection.is_connected():
                 cursor = self.connection.cursor()
                 
-                # Create database if it doesn't exist
+                
                 cursor.execute("CREATE DATABASE IF NOT EXISTS restDB")
                 cursor.execute("USE restaurant_db")
                 
-                # Create orders table
+              
                 create_orders_table = """
                 CREATE TABLE IF NOT EXISTS orders (
                     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,7 +53,7 @@ class RestaurantManagementSystem:
                 """
                 cursor.execute(create_orders_table)
                 
-                # Create menu_items table
+               
                 create_menu_table = """
                 CREATE TABLE IF NOT EXISTS menu_items (
                     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -66,7 +66,7 @@ class RestaurantManagementSystem:
                 """
                 cursor.execute(create_menu_table)
                 
-                # Insert default menu items if table is empty
+                
                 cursor.execute("SELECT COUNT(*) FROM menu_items")
                 if cursor.fetchone()[0] == 0:
                     self.insert_default_menu_items()
@@ -80,7 +80,7 @@ class RestaurantManagementSystem:
             
     def setup_variables(self):
         """Initialize all tkinter variables"""
-        # Checkbox variables
+        
         self.var1 = IntVar()
         self.var2 = IntVar()
         self.var3 = IntVar()
@@ -98,7 +98,7 @@ class RestaurantManagementSystem:
         self.var15 = IntVar()
         self.var16 = IntVar()
 
-        # Cost variables
+        
         self.DateofOrder = StringVar()
         self.Receipt_Ref = StringVar()
         self.PaidTax = StringVar()
@@ -108,11 +108,11 @@ class RestaurantManagementSystem:
         self.CostofDrinks = StringVar()
         self.ServiceCharge = StringVar()
 
-        # Calculator variable
+        
         self.text_Input = StringVar()
         self.operator = ""
 
-        # Item entry variables
+      
         self.E_Latta = StringVar()
         self.E_Espresso = StringVar()
         self.E_Iced_Latta = StringVar()
@@ -131,7 +131,7 @@ class RestaurantManagementSystem:
         self.E_Carlton_Hill_Chocolate_Cake = StringVar()
         self.E_Queen_Park_Chocolate_Cake = StringVar()
 
-        # Set default values
+        
         for var in [self.E_Latta, self.E_Espresso, self.E_Iced_Latta, self.E_Vale_Coffe,
                    self.E_Cappuccino, self.E_African_Coffee, self.E_American_Coffee, self.E_Iced_Cappuccino,
                    self.E_School_Cake, self.E_Sunny_AO_Cake, self.E_Jonathan_YO_Cake, self.E_West_African_Cake,
@@ -146,7 +146,7 @@ class RestaurantManagementSystem:
         cursor = self.connection.cursor()
         
         menu_items = [
-            # Drinks
+         
             ('Latta', 'drinks', 1.20),
             ('Espresso', 'drinks', 1.99),
             ('Iced Latte', 'drinks', 2.05),
@@ -156,7 +156,7 @@ class RestaurantManagementSystem:
             ('American Coffee', 'drinks', 2.39),
             ('Iced Cappuccino', 'drinks', 1.29),
             
-            # Cakes
+            
             ('School Cake', 'cakes', 1.35),
             ('Sunny AO Cake', 'cakes', 2.20),
             ('Jonathan YO Cake', 'cakes', 1.99),
@@ -173,40 +173,40 @@ class RestaurantManagementSystem:
     
     def setup_ui(self):
         """Setup the user interface with responsive design"""
-        # Configure root window
+       
         self.root.title("Restaurant Management System - Enhanced Edition")
         self.root.configure(background='#f0f0f0')
         
-        # Make window responsive
+        
         self.root.grid_rowconfigure(1, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
         
-        # Get screen dimensions for responsive sizing
+        
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
         
-        # Set window size based on screen size
+       
         window_width = min(1400, int(screen_width * 0.9))
         window_height = min(800, int(screen_height * 0.9))
         
-        # Center the window
+        
         x = (screen_width - window_width) // 2
         y = (screen_height - window_height) // 2
         
         self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
         self.root.minsize(1000, 600)
 
-         # Title Frame
+        
         self.setup_title_frame()
         
-        # Main content frame
+        
         self.main_frame = Frame(self.root, bg='#f0f0f0')
         self.main_frame.grid(row=1, column=0, sticky="nsew", padx=10, pady=(0, 10))
         self.main_frame.grid_rowconfigure(0, weight=1)
         self.main_frame.grid_columnconfigure(0, weight=2)
         self.main_frame.grid_columnconfigure(1, weight=1)
         
-        # Setup frames
+       
         self.setup_menu_frame()
         self.setup_receipt_calc_frame()
         
@@ -235,27 +235,27 @@ class RestaurantManagementSystem:
         menu_main_frame.grid_columnconfigure(0, weight=1)
         menu_main_frame.grid_columnconfigure(1, weight=1)
 
-        # Drinks Frame
+     
         drinks_frame = LabelFrame(menu_main_frame, text="☕ Beverages", 
                                 font=('Segoe UI', 14, 'bold'),
                                 bg='#e8f4fd', fg='#2c3e50', 
                                 relief=RIDGE, bd=2)
         drinks_frame.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
         
-        # Cakes Frame
+      
         cakes_frame = LabelFrame(menu_main_frame, text="🧁 Desserts", 
                                font=('Segoe UI', 14, 'bold'),
                                bg='#fef9e7', fg='#2c3e50', 
                                relief=RIDGE, bd=2)
         cakes_frame.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
         
-        # Cost Frame
+       
         self.setup_cost_frame(menu_main_frame)
         
-        # Setup drinks items
+        
         self.setup_drinks_items(drinks_frame)
         
-        # Setup cakes items
+        
         self.setup_cakes_items(cakes_frame)
     
     def setup_drinks_items(self, parent):
@@ -274,7 +274,7 @@ class RestaurantManagementSystem:
         self.drink_entries = {}
         
         for i, (name, var, text_var, command) in enumerate(drinks_data):
-            # Checkbox
+            
             chk = Checkbutton(parent, text=name, variable=var,
                             font=('Segoe UI', 11, 'bold'),
                             bg='#e8f4fd', fg='#2c3e50',
@@ -282,7 +282,7 @@ class RestaurantManagementSystem:
                             command=command)
             chk.grid(row=i, column=0, sticky=W, padx=10, pady=2)
             
-            # Entry field
+            
             entry = Entry(parent, textvariable=text_var,
                         font=('Segoe UI', 10),
                         width=8, state=DISABLED,
@@ -308,7 +308,7 @@ class RestaurantManagementSystem:
         self.cake_entries = {}
         
         for i, (name, var, text_var, command) in enumerate(cakes_data):
-            # Checkbox
+         
             chk = Checkbutton(parent, text=name, variable=var,
                             font=('Segoe UI', 11, 'bold'),
                             bg='#fef9e7', fg='#2c3e50',
@@ -316,7 +316,7 @@ class RestaurantManagementSystem:
                             command=command)
             chk.grid(row=i, column=0, sticky=W, padx=10, pady=2)
             
-            # Entry field
+          
             entry = Entry(parent, textvariable=text_var,
                         font=('Segoe UI', 10),
                         width=8, state=DISABLED,
@@ -333,13 +333,13 @@ class RestaurantManagementSystem:
         right_frame.grid_rowconfigure(1, weight=1)
         right_frame.grid_columnconfigure(0, weight=1)
         
-        # Buttons frame
+     
         self.setup_buttons_frame(right_frame)
         
-        # Receipt frame
+       
         self.setup_receipt_frame(right_frame)
         
-        # Calculator frame
+       
         self.setup_calculator_frame(right_frame)
     
     def setup_buttons_frame(self, parent):
@@ -351,7 +351,7 @@ class RestaurantManagementSystem:
         buttons_frame.grid_columnconfigure(2, weight=1)
         buttons_frame.grid_columnconfigure(3, weight=1)
         
-        # Button style
+        
         button_style = {
             'font': ('Segoe UI', 12, 'bold'),
             'fg': 'white',
@@ -361,25 +361,25 @@ class RestaurantManagementSystem:
             'height': 2
         }
         
-        # Total button
+        
         btn_total = Button(buttons_frame, text="Calculate Total",
                          bg='#27ae60', activebackground='#2ecc71',
                          command=self.CostofItem, **button_style)
         btn_total.grid(row=0, column=0, sticky="ew", padx=2)
         
-        # Receipt button
+       
         btn_receipt = Button(buttons_frame, text="Generate Receipt",
                            bg='#3498db', activebackground='#5dade2',
                            command=self.Receipt, **button_style)
         btn_receipt.grid(row=0, column=1, sticky="ew", padx=2)
         
-        # Reset button
+        
         btn_reset = Button(buttons_frame, text="Reset",
                          bg='#f39c12', activebackground='#f8c471',
                          command=self.Reset, **button_style)
         btn_reset.grid(row=0, column=2, sticky="ew", padx=2)
         
-        # Exit button
+       
         btn_exit = Button(buttons_frame, text="Exit",
                         bg='#e74c3c', activebackground='#ec7063',
                         command=self.iExit, **button_style)
@@ -393,11 +393,11 @@ class RestaurantManagementSystem:
                               relief=RIDGE, bd=2)
         cost_frame.grid(row=1, column=0, columnspan=2, sticky="ew", padx=5, pady=5)
         
-        # Configure grid
+        
         for i in range(6):
             cost_frame.grid_columnconfigure(i, weight=1)
         
-        # Cost labels and entries
+        
         cost_data = [
             ("Cost of Drinks:", self.CostofDrinks, 0, 0),
             ("Paid Tax:", self.PaidTax, 0, 2),
@@ -430,7 +430,7 @@ class RestaurantManagementSystem:
         receipt_frame.grid_rowconfigure(0, weight=1)
         receipt_frame.grid_columnconfigure(0, weight=1)
         
-        # Receipt text widget with scrollbar
+       
         text_frame = Frame(receipt_frame)
         text_frame.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
         text_frame.grid_rowconfigure(0, weight=1)
@@ -443,7 +443,7 @@ class RestaurantManagementSystem:
                               wrap=WORD)
         self.txtReceipt.grid(row=0, column=0, sticky="nsew")
         
-        # Scrollbar
+        
         scrollbar = Scrollbar(text_frame, orient=VERTICAL, command=self.txtReceipt.yview)
         scrollbar.grid(row=0, column=1, sticky="ns")
         self.txtReceipt.config(yscrollcommand=scrollbar.set)
@@ -456,19 +456,19 @@ class RestaurantManagementSystem:
                               relief=RIDGE, bd=2)
         calc_frame.grid(row=2, column=0, sticky="ew")
         
-        # Calculator display
+        
         self.txtDisplay = Entry(calc_frame, textvariable=self.text_Input,
                               font=('Segoe UI', 14), 
                               bg='#ffffff', fg='#2c3e50',
                               bd=2, relief=SOLID, justify=RIGHT)
         self.txtDisplay.grid(row=0, column=0, columnspan=4, sticky="ew", padx=5, pady=5)
         
-        # Calculator buttons
+       
         self.setup_calculator_buttons(calc_frame)
     
     def setup_calculator_buttons(self, parent):
         """Setup calculator buttons"""
-        # Configure grid weights
+       
         for i in range(4):
             parent.grid_columnconfigure(i, weight=1)
         
@@ -479,7 +479,7 @@ class RestaurantManagementSystem:
             'cursor': 'hand2'
         }
         
-        # Button layout
+        
         buttons = [
             ['7', '8', '9', '+'],
             ['4', '5', '6', '-'],
@@ -498,7 +498,7 @@ class RestaurantManagementSystem:
                 elif button_text == '=':
                     bg_color = '#27ae60'
                     command = self.btnEquals
-                else:  # Clear button
+                else:  
                     bg_color = '#e74c3c'
                     command = self.btnClear
                 
@@ -508,7 +508,9 @@ class RestaurantManagementSystem:
                 btn.grid(row=row, column=col, sticky="nsew", padx=1, pady=1)
     
     
-    # Calculator methods
+    
+    
+   
     def btnClick(self, numbers):
         self.operator = self.operator + str(numbers)
         self.text_Input.set(self.operator)
@@ -537,7 +539,7 @@ def main():
     root.mainloop()
 
 if __name__ == "__main__":
-    # Check if required modules are installed
+   
     try:
         import mysql.connector
         main()
@@ -545,7 +547,7 @@ if __name__ == "__main__":
         print("MySQL Connector not found. Please install it using:")
         print("pip install mysql-connector-python")
         
-        # Create a simple error window
+     
         root = Tk()
         root.title("Missing Dependency")
         root.geometry("400x200")
