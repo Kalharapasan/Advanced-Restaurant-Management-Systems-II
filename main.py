@@ -6,12 +6,12 @@ from tkinter import *
 from tkinter import ttk
 import mysql.connector
 from mysql.connector import Error
-import 
+import json
 
 # Database configuration
 DB_CONFIG = {
     'host': 'localhost',
-    'database': 'restaurant_db',
+    'database': 'restDB',
     'user': 'root',
     'password': 'kalharamax' 
 }
@@ -31,7 +31,7 @@ class RestaurantManagementSystem:
                 cursor = self.connection.cursor()
                 
                 # Create database if it doesn't exist
-                cursor.execute("CREATE DATABASE IF NOT EXISTS restaurant_db")
+                cursor.execute("CREATE DATABASE IF NOT EXISTS restDB")
                 cursor.execute("USE restaurant_db")
                 
                 # Create orders table
@@ -77,6 +77,72 @@ class RestaurantManagementSystem:
         except Error as e:
             print(f"Error connecting to MySQL: {e}")
             self.connection = None
+            
+    def setup_variables(self):
+        """Initialize all tkinter variables"""
+        # Checkbox variables
+        self.var1 = IntVar()
+        self.var2 = IntVar()
+        self.var3 = IntVar()
+        self.var4 = IntVar()
+        self.var5 = IntVar()
+        self.var6 = IntVar()
+        self.var7 = IntVar()
+        self.var8 = IntVar()
+        self.var9 = IntVar()
+        self.var10 = IntVar()
+        self.var11 = IntVar()
+        self.var12 = IntVar()
+        self.var13 = IntVar()
+        self.var14 = IntVar()
+        self.var15 = IntVar()
+        self.var16 = IntVar()
+
+        # Cost variables
+        self.DateofOrder = StringVar()
+        self.Receipt_Ref = StringVar()
+        self.PaidTax = StringVar()
+        self.SubTotal = StringVar()
+        self.TotalCost = StringVar()
+        self.CostofCakes = StringVar()
+        self.CostofDrinks = StringVar()
+        self.ServiceCharge = StringVar()
+
+        # Calculator variable
+        self.text_Input = StringVar()
+        self.operator = ""
+
+        # Item entry variables
+        self.E_Latta = StringVar()
+        self.E_Espresso = StringVar()
+        self.E_Iced_Latta = StringVar()
+        self.E_Vale_Coffe = StringVar()
+        self.E_Cappuccino = StringVar()
+        self.E_African_Coffee = StringVar()
+        self.E_American_Coffee = StringVar()
+        self.E_Iced_Cappuccino = StringVar()
+
+        self.E_School_Cake = StringVar()
+        self.E_Sunny_AO_Cake = StringVar()
+        self.E_Jonathan_YO_Cake = StringVar()
+        self.E_West_African_Cake = StringVar()
+        self.E_Lagos_Chocolate_Cake = StringVar()
+        self.E_Kilburn_Chocolate_Cake = StringVar()
+        self.E_Carlton_Hill_Chocolate_Cake = StringVar()
+        self.E_Queen_Park_Chocolate_Cake = StringVar()
+
+        # Set default values
+        for var in [self.E_Latta, self.E_Espresso, self.E_Iced_Latta, self.E_Vale_Coffe,
+                   self.E_Cappuccino, self.E_African_Coffee, self.E_American_Coffee, self.E_Iced_Cappuccino,
+                   self.E_School_Cake, self.E_Sunny_AO_Cake, self.E_Jonathan_YO_Cake, self.E_West_African_Cake,
+                   self.E_Lagos_Chocolate_Cake, self.E_Kilburn_Chocolate_Cake, 
+                   self.E_Carlton_Hill_Chocolate_Cake, self.E_Queen_Park_Chocolate_Cake]:
+            var.set("0")
+
+        self.DateofOrder.set(time.strftime("%d/%m/%Y"))
+    
+    
+    
     
     
 
