@@ -579,6 +579,78 @@ class RestaurantManagementSystem:
             self.drink_entries["Iced Cappuccino"].configure(state=DISABLED)
             self.E_Iced_Cappuccino.set("0")
     
+    def chkSchool_Cake(self):
+        if self.var9.get() == 1:
+            self.cake_entries["School Cake"].configure(state=NORMAL)
+            self.cake_entries["School Cake"].focus()
+            self.E_School_Cake.set("")
+        else:
+            self.cake_entries["School Cake"].configure(state=DISABLED)
+            self.E_School_Cake.set("0")
+    
+    def chkSunny_AO_Cake(self):
+        if self.var10.get() == 1:
+            self.cake_entries["Sunday O Cake"].configure(state=NORMAL)
+            self.cake_entries["Sunday O Cake"].focus()
+            self.E_Sunny_AO_Cake.set("")
+        else:
+            self.cake_entries["Sunday O Cake"].configure(state=DISABLED)
+            self.E_Sunny_AO_Cake.set("0")
+    
+    def chkJonathan_YO_Cake(self):
+        if self.var11.get() == 1:
+            self.cake_entries["Jonathan O Cake"].configure(state=NORMAL)
+            self.cake_entries["Jonathan O Cake"].focus()
+            self.E_Jonathan_YO_Cake.set("")
+        else:
+            self.cake_entries["Jonathan O Cake"].configure(state=DISABLED)
+            self.E_Jonathan_YO_Cake.set("0")
+    
+    def chkWest_African_Cake(self):
+        if self.var12.get() == 1:
+            self.cake_entries["West African Cake"].configure(state=NORMAL)
+            self.cake_entries["West African Cake"].focus()
+            self.E_West_African_Cake.set("")
+        else:
+            self.cake_entries["West African Cake"].configure(state=DISABLED)
+            self.E_West_African_Cake.set("0")
+    
+    def chkLagos_Chocolate_Cake(self):
+        if self.var13.get() == 1:
+            self.cake_entries["Lagos Chocolate Cake"].configure(state=NORMAL)
+            self.cake_entries["Lagos Chocolate Cake"].focus()
+            self.E_Lagos_Chocolate_Cake.set("")
+        else:
+            self.cake_entries["Lagos Chocolate Cake"].configure(state=DISABLED)
+            self.E_Lagos_Chocolate_Cake.set("0")
+    
+    def chkKilburn_Chocolate_Cake(self):
+        if self.var14.get() == 1:
+            self.cake_entries["Kilburn Chocolate Cake"].configure(state=NORMAL)
+            self.cake_entries["Kilburn Chocolate Cake"].focus()
+            self.E_Kilburn_Chocolate_Cake.set("")
+        else:
+            self.cake_entries["Kilburn Chocolate Cake"].configure(state=DISABLED)
+            self.E_Kilburn_Chocolate_Cake.set("0")
+    
+    def chkCarlton_Hill_Cake(self):
+        if self.var15.get() == 1:
+            self.cake_entries["Carlton Hill Cake"].configure(state=NORMAL)
+            self.cake_entries["Carlton Hill Cake"].focus()
+            self.E_Carlton_Hill_Chocolate_Cake.set("")
+        else:
+            self.cake_entries["Carlton Hill Cake"].configure(state=DISABLED)
+            self.E_Carlton_Hill_Chocolate_Cake.set("0")
+    
+    def chkQueen_Park_Cake(self):
+        if self.var16.get() == 1:
+            self.cake_entries["Queen's Park Cake"].configure(state=NORMAL)
+            self.cake_entries["Queen's Park Cake"].focus()
+            self.E_Queen_Park_Chocolate_Cake.set("")
+        else:
+            self.cake_entries["Queen's Park Cake"].configure(state=DISABLED)
+            self.E_Queen_Park_Chocolate_Cake.set("0")
+    
     
    
     def btnClick(self, numbers):
