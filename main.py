@@ -6,4 +6,12 @@ from tkinter import *
 from tkinter import ttk
 import mysql.connector
 from mysql.connector import Error
-import json
+import 
+
+# Database configuration
+DB_CONFIG = {
+    'host': 'localhost',
+    'database': 'restaurant_db',
+    'user': 'root',
+    'password': 'kalharamax' 
+}
