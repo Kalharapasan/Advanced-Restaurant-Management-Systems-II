@@ -225,6 +225,40 @@ class RestaurantManagementSystem:
                           pady=20)
         title_label.grid(row=0, column=0)
     
+    def setup_menu_frame(self):
+        """Setup the menu frame with drinks and cakes"""
+        menu_main_frame = Frame(self.main_frame, bg='#ecf0f1', relief=RIDGE, bd=2)
+        menu_main_frame.grid(row=0, column=0, sticky="nsew", padx=(0, 5))
+        menu_main_frame.grid_rowconfigure(0, weight=1)
+        menu_main_frame.grid_rowconfigure(1, weight=1)
+        menu_main_frame.grid_rowconfigure(2, weight=0)
+        menu_main_frame.grid_columnconfigure(0, weight=1)
+        menu_main_frame.grid_columnconfigure(1, weight=1)
+
+        # Drinks Frame
+        drinks_frame = LabelFrame(menu_main_frame, text="☕ Beverages", 
+                                font=('Segoe UI', 14, 'bold'),
+                                bg='#e8f4fd', fg='#2c3e50', 
+                                relief=RIDGE, bd=2)
+        drinks_frame.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
+        
+        # Cakes Frame
+        cakes_frame = LabelFrame(menu_main_frame, text="🧁 Desserts", 
+                               font=('Segoe UI', 14, 'bold'),
+                               bg='#fef9e7', fg='#2c3e50', 
+                               relief=RIDGE, bd=2)
+        cakes_frame.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
+        
+        # Cost Frame
+        self.setup_cost_frame(menu_main_frame)
+        
+        # Setup drinks items
+        self.setup_drinks_items(drinks_frame)
+        
+        # Setup cakes items
+        self.setup_cakes_items(cakes_frame)
+    
+    
     # Calculator methods
     def btnClick(self, numbers):
         self.operator = self.operator + str(numbers)
