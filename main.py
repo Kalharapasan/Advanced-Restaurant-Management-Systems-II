@@ -816,8 +816,6 @@ class RestaurantManagementSystem:
         self.txtReceipt.insert(END, "=" * 50 + "\n")
         self.txtReceipt.insert(END, "Thank you for dining with us! 🍽️\n")
         self.txtReceipt.insert(END, "=" * 50 + "\n")
-        
-        
         self.save_order_to_database(receipt_ref, ordered_items)
     
     def save_order_to_database(self, receipt_ref, ordered_items):
