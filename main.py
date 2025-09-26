@@ -651,10 +651,26 @@ class RestaurantManagementSystem:
             self.cake_entries["Queen's Park Cake"].configure(state=DISABLED)
             self.E_Queen_Park_Chocolate_Cake.set("0")
     
+    def btnClick(self, numbers):
+        self.operator = self.operator + str(numbers)
+        self.text_Input.set(self.operator)
+
+    def btnClear(self):
+        self.operator = ""
+        self.text_Input.set("")
+
+    def btnEquals(self):
+        try:
+            sumup = str(eval(self.operator))
+            self.text_Input.set(sumup)
+            self.operator = ""
+        except:
+            self.text_Input.set("Error")
+            self.operator = ""
+    
     def CostofItem(self):
         """Calculate the cost of all items"""
         try:
-            
             items = {
                 'Latta': float(self.E_Latta.get() or 0),
                 'Espresso': float(self.E_Espresso.get() or 0),
@@ -706,23 +722,105 @@ class RestaurantManagementSystem:
         except ValueError:
             tkinter.messagebox.showerror("Error", "Please enter valid numbers for quantities.")
     
-   
-    def btnClick(self, numbers):
-        self.operator = self.operator + str(numbers)
-        self.text_Input.set(self.operator)
-
-    def btnClear(self):
-        self.operator = ""
-        self.text_Input.set("")
-
-    def btnEquals(self):
-        try:
-            sumup = str(eval(self.operator))
-            self.text_Input.set(sumup)
-            self.operator = ""
-        except:
-            self.text_Input.set("Error")
-            self.operator = ""
+    def Receipt(self):
+        """Generate and display receipt, also save to database"""
+        self.txtReceipt.delete("1.0", END)
+        
+    
+        x = random.randint(10908, 500876)
+        receipt_ref = f"BILL{x}"
+        self.Receipt_Ref.set(receipt_ref)
+        
+       
+        current_date = time.strftime("%d/%m/%Y")
+        current_time = time.strftime("%H:%M:%S")
+        
+       
+        self.txtReceipt.insert(END, "=" * 50 + "\n")
+        self.txtReceipt.insert(END, "      🍽️ RESTAURANT RECEIPT 🍽️\n")
+        self.txtReceipt.insert(END, "=" * 50 + "\n")
+        self.txtReceipt.insert(END, f"Receipt Ref: {receipt_ref}\n")
+        self.txtReceipt.insert(END, f"Date: {current_date}    Time: {current_time}\n")
+        self.txtReceipt.insert(END, "=" * 50 + "\n")
+        
+    
+        self.txtReceipt.insert(END, "ITEMS ORDERED:\n")
+        self.txtReceipt.insert(END, "-" * 50 + "\n")
+        
+       
+        ordered_items = {}
+        
+     
+        if float(self.E_Latta.get()) > 0:
+            self.txtReceipt.insert(END, f"Latta: {self.E_Latta.get()}\n")
+            ordered_items['Latta'] = float(self.E_Latta.get())
+        if float(self.E_Espresso.get()) > 0:
+            self.txtReceipt.insert(END, f"Espresso: {self.E_Espresso.get()}\n")
+            ordered_items['Espresso'] = float(self.E_Espresso.get())
+        if float(self.E_Iced_Latta.get()) > 0:
+            self.txtReceipt.insert(END, f"Iced Latte: {self.E_Iced_Latta.get()}\n")
+            ordered_items['Iced_Latte'] = float(self.E_Iced_Latta.get())
+        if float(self.E_Vale_Coffe.get()) > 0:
+            self.txtReceipt.insert(END, f"Vale Coffee: {self.E_Vale_Coffe.get()}\n")
+            ordered_items['Vale_Coffee'] = float(self.E_Vale_Coffe.get())
+        if float(self.E_Cappuccino.get()) > 0:
+            self.txtReceipt.insert(END, f"Cappuccino: {self.E_Cappuccino.get()}\n")
+            ordered_items['Cappuccino'] = float(self.E_Cappuccino.get())
+        if float(self.E_African_Coffee.get()) > 0:
+            self.txtReceipt.insert(END, f"African Coffee: {self.E_African_Coffee.get()}\n")
+            ordered_items['African_Coffee'] = float(self.E_African_Coffee.get())
+        if float(self.E_American_Coffee.get()) > 0:
+            self.txtReceipt.insert(END, f"American Coffee: {self.E_American_Coffee.get()}\n")
+            ordered_items['American_Coffee'] = float(self.E_American_Coffee.get())
+        if float(self.E_Iced_Cappuccino.get()) > 0:
+            self.txtReceipt.insert(END, f"Iced Cappuccino: {self.E_Iced_Cappuccino.get()}\n")
+            ordered_items['Iced_Cappuccino'] = float(self.E_Iced_Cappuccino.get())
+            
+    
+        if float(self.E_School_Cake.get()) > 0:
+            self.txtReceipt.insert(END, f"School Cake: {self.E_School_Cake.get()}\n")
+            ordered_items['School_Cake'] = float(self.E_School_Cake.get())
+        if float(self.E_Sunny_AO_Cake.get()) > 0:
+            self.txtReceipt.insert(END, f"Sunday O Cake: {self.E_Sunny_AO_Cake.get()}\n")
+            ordered_items['Sunday_AO_Cake'] = float(self.E_Sunny_AO_Cake.get())
+        if float(self.E_Jonathan_YO_Cake.get()) > 0:
+            self.txtReceipt.insert(END, f"Jonathan O Cake: {self.E_Jonathan_YO_Cake.get()}\n")
+            ordered_items['Jonathan_YO_Cake'] = float(self.E_Jonathan_YO_Cake.get())
+        if float(self.E_West_African_Cake.get()) > 0:
+            self.txtReceipt.insert(END, f"West African Cake: {self.E_West_African_Cake.get()}\n")
+            ordered_items['West_African_Cake'] = float(self.E_West_African_Cake.get())
+        if float(self.E_Lagos_Chocolate_Cake.get()) > 0:
+            self.txtReceipt.insert(END, f"Lagos Chocolate Cake: {self.E_Lagos_Chocolate_Cake.get()}\n")
+            ordered_items['Lagos_Chocolate_Cake'] = float(self.E_Lagos_Chocolate_Cake.get())
+        if float(self.E_Kilburn_Chocolate_Cake.get()) > 0:
+            self.txtReceipt.insert(END, f"Kilburn Chocolate Cake: {self.E_Kilburn_Chocolate_Cake.get()}\n")
+            ordered_items['Kilburn_Chocolate_Cake'] = float(self.E_Kilburn_Chocolate_Cake.get())
+        if float(self.E_Carlton_Hill_Chocolate_Cake.get()) > 0:
+            self.txtReceipt.insert(END, f"Carlton Hill Cake: {self.E_Carlton_Hill_Chocolate_Cake.get()}\n")
+            ordered_items['Carlton_Hill_Chocolate_Cake'] = float(self.E_Carlton_Hill_Chocolate_Cake.get())
+        if float(self.E_Queen_Park_Chocolate_Cake.get()) > 0:
+            self.txtReceipt.insert(END, f"Queen's Park Cake: {self.E_Queen_Park_Chocolate_Cake.get()}\n")
+            ordered_items['Queen_Park_Chocolate_Cake'] = float(self.E_Queen_Park_Chocolate_Cake.get())
+        
+       
+        self.txtReceipt.insert(END, "-" * 50 + "\n")
+        self.txtReceipt.insert(END, "COST BREAKDOWN:\n")
+        self.txtReceipt.insert(END, "-" * 50 + "\n")
+        self.txtReceipt.insert(END, f"Cost of Drinks: {self.CostofDrinks.get()}\n")
+        self.txtReceipt.insert(END, f"Cost of Cakes: {self.CostofCakes.get()}\n")
+        self.txtReceipt.insert(END, f"Service Charge: {self.ServiceCharge.get()}\n")
+        self.txtReceipt.insert(END, f"Sub Total: {self.SubTotal.get()}\n")
+        self.txtReceipt.insert(END, f"Tax (15%): {self.PaidTax.get()}\n")
+        self.txtReceipt.insert(END, "=" * 50 + "\n")
+        self.txtReceipt.insert(END, f"TOTAL COST: {self.TotalCost.get()}\n")
+        self.txtReceipt.insert(END, "=" * 50 + "\n")
+        self.txtReceipt.insert(END, "Thank you for dining with us! 🍽️\n")
+        self.txtReceipt.insert(END, "=" * 50 + "\n")
+        
+        
+        self.save_order_to_database(receipt_ref, ordered_items)
+    
+    
     
     
     
