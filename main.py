@@ -326,6 +326,41 @@ class RestaurantManagementSystem:
             
             self.cake_entries[name] = entry
     
+    def setup_cost_frame(self, parent):
+        """Setup the cost display frame"""
+        cost_frame = LabelFrame(parent, text="💰 Order Summary", 
+                              font=('Segoe UI', 14, 'bold'),
+                              bg='#f8f9fa', fg='#2c3e50',
+                              relief=RIDGE, bd=2)
+        cost_frame.grid(row=1, column=0, columnspan=2, sticky="ew", padx=5, pady=5)
+        
+        # Configure grid
+        for i in range(6):
+            cost_frame.grid_columnconfigure(i, weight=1)
+        
+        # Cost labels and entries
+        cost_data = [
+            ("Cost of Drinks:", self.CostofDrinks, 0, 0),
+            ("Paid Tax:", self.PaidTax, 0, 2),
+            ("Cost of Cakes:", self.CostofCakes, 1, 0),
+            ("Sub Total:", self.SubTotal, 1, 2),
+            ("Service Charge:", self.ServiceCharge, 2, 0),
+            ("Total Cost:", self.TotalCost, 2, 2)
+        ]
+        
+        for label_text, var, row, col in cost_data:
+            label = Label(cost_frame, text=label_text,
+                        font=('Segoe UI', 10, 'bold'),
+                        bg='#f8f9fa', fg='#2c3e50')
+            label.grid(row=row, column=col, sticky=W, padx=5, pady=2)
+            
+            entry = Entry(cost_frame, textvariable=var,
+                        font=('Segoe UI', 10),
+                        width=15, state='readonly',
+                        bg='#ffffff', fg='#2c3e50',
+                        bd=1, relief=SOLID)
+            entry.grid(row=row, column=col+1, sticky=EW, padx=5, pady=2)
+    
     
     # Calculator methods
     def btnClick(self, numbers):
