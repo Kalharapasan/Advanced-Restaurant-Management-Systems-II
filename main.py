@@ -902,6 +902,20 @@ class RestaurantManagementSystem:
         self.operator = ""
         self.text_Input.set("")
     
+    def iExit(self):
+        """Exit the application"""
+        result = tkinter.messagebox.askyesno("Exit Restaurant System", 
+                                           "Are you sure you want to exit the application?")
+        if result:
+            if self.connection and self.connection.is_connected():
+                self.connection.close()
+            self.root.destroy()
+
+    def __del__(self):
+        """Cleanup database connection"""
+        if hasattr(self, 'connection') and self.connection and self.connection.is_connected():
+            self.connection.close()
+    
     
 
 def main():
