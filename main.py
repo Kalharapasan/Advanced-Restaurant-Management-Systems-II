@@ -165,6 +165,20 @@ class RestaurantManagementSystem:
         
         self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
         self.root.minsize(1000, 600)
+
+         # Title Frame
+        self.setup_title_frame()
+        
+        # Main content frame
+        self.main_frame = Frame(self.root, bg='#f0f0f0')
+        self.main_frame.grid(row=1, column=0, sticky="nsew", padx=10, pady=(0, 10))
+        self.main_frame.grid_rowconfigure(0, weight=1)
+        self.main_frame.grid_columnconfigure(0, weight=2)
+        self.main_frame.grid_columnconfigure(1, weight=1)
+        
+        # Setup frames
+        self.setup_menu_frame()
+        self.setup_receipt_calc_frame()
     
     
     
