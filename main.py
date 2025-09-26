@@ -866,7 +866,41 @@ class RestaurantManagementSystem:
         except Error as e:
             tkinter.messagebox.showerror("Database Error", f"Failed to save order: {e}")
     
-    
+    def Reset(self):
+        """Reset all fields and values"""
+       
+        self.PaidTax.set("")
+        self.SubTotal.set("")
+        self.TotalCost.set("")
+        self.CostofCakes.set("")
+        self.CostofDrinks.set("")
+        self.ServiceCharge.set("")
+        
+      
+        self.txtReceipt.delete("1.0", END)
+
+       
+        for var in [self.E_Latta, self.E_Espresso, self.E_Iced_Latta, self.E_Vale_Coffe,
+                   self.E_Cappuccino, self.E_African_Coffee, self.E_American_Coffee, self.E_Iced_Cappuccino,
+                   self.E_School_Cake, self.E_Sunny_AO_Cake, self.E_Jonathan_YO_Cake, self.E_West_African_Cake,
+                   self.E_Lagos_Chocolate_Cake, self.E_Kilburn_Chocolate_Cake, 
+                   self.E_Carlton_Hill_Chocolate_Cake, self.E_Queen_Park_Chocolate_Cake]:
+            var.set("0")
+        
+        
+        for var in [self.var1, self.var2, self.var3, self.var4, self.var5, self.var6, self.var7, self.var8,
+                   self.var9, self.var10, self.var11, self.var12, self.var13, self.var14, self.var15, self.var16]:
+            var.set(0)
+        
+       
+        for entry in self.drink_entries.values():
+            entry.configure(state=DISABLED)
+        for entry in self.cake_entries.values():
+            entry.configure(state=DISABLED)
+        
+        
+        self.operator = ""
+        self.text_Input.set("")
     
     
 
