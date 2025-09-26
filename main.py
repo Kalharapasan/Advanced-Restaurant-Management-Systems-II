@@ -258,6 +258,40 @@ class RestaurantManagementSystem:
         # Setup cakes items
         self.setup_cakes_items(cakes_frame)
     
+    def setup_drinks_items(self, parent):
+        """Setup drinks items with checkboxes and entry fields"""
+        drinks_data = [
+            ("Latta", self.var1, self.E_Latta, self.chkLatta),
+            ("Espresso", self.var2, self.E_Espresso, self.chkEspresso),
+            ("Iced Latte", self.var3, self.E_Iced_Latta, self.chkIced_Latte),
+            ("Vale Coffee", self.var4, self.E_Vale_Coffe, self.chkVale_Coffee),
+            ("Cappuccino", self.var5, self.E_Cappuccino, self.chkCappuccino),
+            ("African Coffee", self.var6, self.E_African_Coffee, self.chkAfrican_Coffee),
+            ("American Coffee", self.var7, self.E_American_Coffee, self.chkAmerican_Coffee),
+            ("Iced Cappuccino", self.var8, self.E_Iced_Cappuccino, self.chkIced_Cappuccino)
+        ]
+        
+        self.drink_entries = {}
+        
+        for i, (name, var, text_var, command) in enumerate(drinks_data):
+            # Checkbox
+            chk = Checkbutton(parent, text=name, variable=var,
+                            font=('Segoe UI', 11, 'bold'),
+                            bg='#e8f4fd', fg='#2c3e50',
+                            activebackground='#d4edfa',
+                            command=command)
+            chk.grid(row=i, column=0, sticky=W, padx=10, pady=2)
+            
+            # Entry field
+            entry = Entry(parent, textvariable=text_var,
+                        font=('Segoe UI', 10),
+                        width=8, state=DISABLED,
+                        bg='#ffffff', fg='#2c3e50',
+                        bd=1, relief=SOLID)
+            entry.grid(row=i, column=1, sticky=E, padx=10, pady=2)
+            
+            self.drink_entries[name] = entry
+    
     
     # Calculator methods
     def btnClick(self, numbers):
