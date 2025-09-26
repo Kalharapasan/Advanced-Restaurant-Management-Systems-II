@@ -448,6 +448,25 @@ class RestaurantManagementSystem:
         scrollbar.grid(row=0, column=1, sticky="ns")
         self.txtReceipt.config(yscrollcommand=scrollbar.set)
     
+    def setup_calculator_frame(self, parent):
+        """Setup the calculator"""
+        calc_frame = LabelFrame(parent, text="🧮 Calculator", 
+                              font=('Segoe UI', 12, 'bold'),
+                              bg='#f8f9fa', fg='#2c3e50',
+                              relief=RIDGE, bd=2)
+        calc_frame.grid(row=2, column=0, sticky="ew")
+        
+        # Calculator display
+        self.txtDisplay = Entry(calc_frame, textvariable=self.text_Input,
+                              font=('Segoe UI', 14), 
+                              bg='#ffffff', fg='#2c3e50',
+                              bd=2, relief=SOLID, justify=RIGHT)
+        self.txtDisplay.grid(row=0, column=0, columnspan=4, sticky="ew", padx=5, pady=5)
+        
+        # Calculator buttons
+        self.setup_calculator_buttons(calc_frame)
+    
+    
     # Calculator methods
     def btnClick(self, numbers):
         self.operator = self.operator + str(numbers)
