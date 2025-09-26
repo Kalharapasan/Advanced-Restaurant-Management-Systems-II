@@ -342,6 +342,48 @@ class RestaurantManagementSystem:
         # Calculator frame
         self.setup_calculator_frame(right_frame)
     
+    def setup_buttons_frame(self, parent):
+        """Setup the action buttons"""
+        buttons_frame = Frame(parent, bg='#ecf0f1')
+        buttons_frame.grid(row=0, column=0, sticky="ew", pady=(0, 10))
+        buttons_frame.grid_columnconfigure(0, weight=1)
+        buttons_frame.grid_columnconfigure(1, weight=1)
+        buttons_frame.grid_columnconfigure(2, weight=1)
+        buttons_frame.grid_columnconfigure(3, weight=1)
+        
+        # Button style
+        button_style = {
+            'font': ('Segoe UI', 12, 'bold'),
+            'fg': 'white',
+            'bd': 2,
+            'relief': RAISED,
+            'cursor': 'hand2',
+            'height': 2
+        }
+        
+        # Total button
+        btn_total = Button(buttons_frame, text="Calculate Total",
+                         bg='#27ae60', activebackground='#2ecc71',
+                         command=self.CostofItem, **button_style)
+        btn_total.grid(row=0, column=0, sticky="ew", padx=2)
+        
+        # Receipt button
+        btn_receipt = Button(buttons_frame, text="Generate Receipt",
+                           bg='#3498db', activebackground='#5dade2',
+                           command=self.Receipt, **button_style)
+        btn_receipt.grid(row=0, column=1, sticky="ew", padx=2)
+        
+        # Reset button
+        btn_reset = Button(buttons_frame, text="Reset",
+                         bg='#f39c12', activebackground='#f8c471',
+                         command=self.Reset, **button_style)
+        btn_reset.grid(row=0, column=2, sticky="ew", padx=2)
+        
+        # Exit button
+        btn_exit = Button(buttons_frame, text="Exit",
+                        bg='#e74c3c', activebackground='#ec7063',
+                        command=self.iExit, **button_style)
+        btn_exit.grid(row=0, column=3, sticky="ew", padx=2)
     
     def setup_cost_frame(self, parent):
         """Setup the cost display frame"""
