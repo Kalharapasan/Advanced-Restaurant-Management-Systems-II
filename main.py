@@ -820,7 +820,51 @@ class RestaurantManagementSystem:
         
         self.save_order_to_database(receipt_ref, ordered_items)
     
-    
+    def save_order_to_database(self, receipt_ref, ordered_items):
+        """Save order to MySQL database"""
+        if not self.connection:
+            tkinter.messagebox.showwarning("Database Warning", "Database connection not available. Order not saved.")
+            return
+        
+        try:
+            cursor = self.connection.cursor()
+            
+          
+            cost_drinks = float(self.CostofDrinks.get().replace('£', '')) if self.CostofDrinks.get() else 0.0
+            cost_cakes = float(self.CostofCakes.get().replace('£', '')) if self.CostofCakes.get() else 0.0
+            service_charge = float(self.ServiceCharge.get().replace('£', '')) if self.ServiceCharge.get() else 0.0
+            subtotal = float(self.SubTotal.get().replace('£', '')) if self.SubTotal.get() else 0.0
+            tax_paid = float(self.PaidTax.get().replace('£', '')) if self.PaidTax.get() else 0.0
+            total_cost = float(self.TotalCost.get().replace('£', '')) if self.TotalCost.get() else 0.0
+            
+            
+            insert_query = """
+            INSERT INTO orders (receipt_ref, order_date, order_time, items, 
+                              cost_of_drinks, cost_of_cakes, service_charge, 
+                              subtotal, tax_paid, total_cost)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            
+            order_data = (
+                receipt_ref,
+                time.strftime("%Y-%m-%d"),
+                time.strftime("%H:%M:%S"),
+                json.dumps(ordered_items),
+                cost_drinks,
+                cost_cakes,
+                service_charge,
+                subtotal,
+                tax_paid,
+                total_cost
+            )
+            
+            cursor.execute(insert_query, order_data)
+            self.connection.commit()
+            
+            tkinter.messagebox.showinfo("Success", f"Order {receipt_ref} saved to database successfully!")
+            
+        except Error as e:
+            tkinter.messagebox.showerror("Database Error", f"Failed to save order: {e}")
     
     
     
