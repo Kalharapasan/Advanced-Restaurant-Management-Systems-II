@@ -32,7 +32,7 @@ class RestaurantManagementSystem:
                 
                 
                 cursor.execute("CREATE DATABASE IF NOT EXISTS restDB")
-                cursor.execute("USE restaurant_db")
+                cursor.execute("USE restDB")
                 
               
                 create_orders_table = """
