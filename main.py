@@ -77,6 +77,8 @@ class RestaurantManagementSystem:
         except Error as e:
             print(f"Error connecting to MySQL: {e}")
             self.connection = None
+    
+    
 
 def main():
     """Main function to run the application"""
