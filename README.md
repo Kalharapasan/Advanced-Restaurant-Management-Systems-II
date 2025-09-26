@@ -67,6 +67,7 @@ python3 main.py
  ┣ 📄 main.py        # Main application
  ┣ 📄 README.md      # Documentation
  ┗ 📄 requirements.txt (optional)
+ ┗ 📄 LICENSE (License)
 ```
 
 ---
