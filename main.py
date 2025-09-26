@@ -507,6 +507,33 @@ class RestaurantManagementSystem:
                            command=command, **button_style)
                 btn.grid(row=row, column=col, sticky="nsew", padx=1, pady=1)
     
+    def chkLatta(self):
+        if self.var1.get() == 1:
+            self.drink_entries["Latta"].configure(state=NORMAL)
+            self.drink_entries["Latta"].focus()
+            self.E_Latta.set("")
+        else:
+            self.drink_entries["Latta"].configure(state=DISABLED)
+            self.E_Latta.set("0")
+    
+    def chkEspresso(self):
+        if self.var2.get() == 1:
+            self.drink_entries["Espresso"].configure(state=NORMAL)
+            self.drink_entries["Espresso"].focus()
+            self.E_Espresso.set("")
+        else:
+            self.drink_entries["Espresso"].configure(state=DISABLED)
+            self.E_Espresso.set("0")
+    
+    def chkIced_Latte(self):
+        if self.var3.get() == 1:
+            self.drink_entries["Iced Latte"].configure(state=NORMAL)
+            self.drink_entries["Iced Latte"].focus()
+            self.E_Iced_Latta.set("")
+        else:
+            self.drink_entries["Iced Latte"].configure(state=DISABLED)
+            self.E_Iced_Latta.set("0")
+    
     
     
     
